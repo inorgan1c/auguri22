@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //setup anchor and gltf scene
     gltf.scene.scale.set(0.1,0.1,0.1);
-    gltf.scene.position.set(Math.PI/2,0,0);
+    gltf.scene.rotation.set(Math.PI/2,0,0);
     anchor.group.add(gltf.scene);
     anchor.group.add(audioSrc);
     action.play();
