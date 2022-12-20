@@ -28,8 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
     camera.add(audioListener);
 
     //setup anchor and gltf scene
-    gltf.scene.scale.set(5,5,5);
+    gltf.scene.scale.set(1,1,1);
     gltf.scene.position.set(0,0,0);
+    gltf.scene.rotation.set(0,-Math.PI/2,0);
     anchor.group.add(gltf.scene);
     anchor.group.add(audioSrc);
     action.play();
