@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const audioClip = await loadAudio("assets/audio/christmas.mp3")
     const audioListener = new THREE.AudioListener();
     const audioSrc = new THREE.Audio(audioListener);
-
+    const mixer = new THREE.AnimationMixer(gltf.scene);
+    const action = mixer.clipAction(gltf.animations[0]);
+    const clock = new THREE.Clock();
+    
     //setup audio FX to play on target found
     audioSrc.setBuffer(audioClip);
     camera.add(audioListener);
@@ -34,12 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
     //on target found
     anchor.onTargetFound = () => {
       audioSrc.play();
+      action.play();
+    
     };
 
     //on target lost, pause audio
     anchor.onTargetLost = () => {
       audioSrc.pause();
       audioSrc.stop();
+      action.pause();
     }
 
     //start ar engine
@@ -49,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderer.setAnimationLoop(() => {
       //render scene
       renderer.render(scene, camera);
-      //mixer.update(clock.getDelta());
+      mixer.update(clock.getDelta());
     });
   };
 
