@@ -29,23 +29,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //setup anchor and gltf scene
     gltf.scene.position.set(0,0,0);
-    gltf.scene.scale.set(0.01, 0.01, 0.01);
     anchor.group.add(gltf.scene);
     anchor.group.add(audioSrc);
+    action.play();
     scene.add(light);
 
     //on target found
     anchor.onTargetFound = () => {
-      audioSrc.play();
-      action.play();
-    
+      audioSrc.play();    
     };
 
     //on target lost, pause audio
     anchor.onTargetLost = () => {
       audioSrc.pause();
       audioSrc.stop();
-      action.pause();
     }
 
     //start ar engine
